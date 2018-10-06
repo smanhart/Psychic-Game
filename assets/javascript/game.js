@@ -11,21 +11,12 @@ var guessedLetters = []
 
 //CREATE method for random letter choice
 var activeLetter = computerChoices[Math.floor(Math.random()*computerChoices.length)];
-   
-console.log(activeLetter)
-
-//TRACK user guess
-
-    //incorrect
-    //correct
-
-//Create function to push guessed letters to array
+   console.log(activeLetter)
 
 
-
-
-document.addEventListener("keyup", function(){
+function checkGuess() {
     var userGuess = event.key.toLowerCase();
+    //Create code to push guessed letters to array
     guessedLetters.push(userGuess)
 
     if (userGuess !== activeLetter && guessCounter > 0) {
@@ -38,24 +29,29 @@ document.addEventListener("keyup", function(){
     else if (userGuess !== activeLetter && guessCounter === 0) {
             lossCounter++
             losses.textContent = "Losses: " + lossCounter;
+            reset();
             console.log("Sorry, you lost")
     }
     else if (userGuess === activeLetter) {
         winCounter++
         wins.textContent = "Wins: " + winCounter;
-        console.log("Number of wins: " + winCounter);
-        console.log(reset);
+        reset();
     }
-})
+}
+
+document.addEventListener("keyup", checkGuess);
 
 //RESET game
     //clear the guessed letters
     //reset the guess counter
     //run the function to start the game again
-reset = function () {
-    document.getElementById("numGuessLeft").reset();
-    document.getElementById("guessedArray").reset();
-
+function reset () {
+    guessCounter = 10;
+    numGuessLeft.textContent = "Guesses Left: 10";
+    guessedArray.textContent = "Your guesses so far: ";
+    guessedLetters.length = 0;
+    activeLetter = computerChoices[Math.floor(Math.random()*computerChoices.length)];
+    console.log(activeLetter);
 }
 
 
