@@ -7,7 +7,7 @@ var guessCounter = 10;
 //CREATE array of possible guesses
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 //CREATE var to hold guessed letters
-
+var guessedLetters = []
 
 //CREATE method for random letter choice
 var activeLetter = computerChoices[Math.floor(Math.random()*computerChoices.length)];
@@ -26,12 +26,12 @@ console.log(activeLetter)
 
 document.addEventListener("keyup", function(){
     var userGuess = event.key.toLowerCase();
-    
+    guessedLetters.push(userGuess)
 
     if (userGuess !== activeLetter && guessCounter > 0) {
         guessCounter--
-        guessedLetters.push(userGuess)
         numGuessLeft.textContent = "Guesses Left: " + guessCounter;
+        guessedArray.textContent = "Your guesses so far: " + guessedLetters;
         console.log("Guesses left: " + guessCounter + guessedLetters); 
     }
 
@@ -44,17 +44,18 @@ document.addEventListener("keyup", function(){
         winCounter++
         wins.textContent = "Wins: " + winCounter;
         console.log("Number of wins: " + winCounter);
+        console.log(reset);
     }
 })
 
-    
-// });
-
-//INCREMENT appropriate counter until win or loss
-    //WRITE information to page
 //RESET game
     //clear the guessed letters
     //reset the guess counter
     //run the function to start the game again
+reset = function () {
+    document.getElementById("numGuessLeft").reset();
+    document.getElementById("guessedArray").reset();
+
+}
 
 
