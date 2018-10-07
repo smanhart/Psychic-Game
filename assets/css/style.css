@@ -1,0 +1,18 @@
+.jumbotron {
+    /* background-image: linear-gradient(to right, red , yellow); */
+    background-image: linear-gradient(to bottom right, rgb(117, 49, 21), rgba(141, 20, 87, 0.637), rgb(66, 19, 175));
+}
+.display-4, h3 {
+    font-family: 'Fondamento', cursive;
+}
+.display-4 {
+    font-size: 5rem;
+    color: oldlace;
+}
+.lead {
+    font-weight: bold;
+    color: oldlace
+}
+img {
+    margin-right: 50px;
+}

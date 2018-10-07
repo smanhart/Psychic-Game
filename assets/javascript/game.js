@@ -21,9 +21,6 @@ function checkGuess() {
     //Create code to push guessed letters to array
     if (guessedLetters.indexOf(userGuess) === -1) guessedLetters.push(userGuess);
     
-    if (guessedLetters.indexOf(userGuess) === 1) {
-        return false;
-    }
 
     // if (userGuess === alpha) {
 
@@ -37,14 +34,14 @@ function checkGuess() {
         else if (userGuess !== activeLetter && guessCounter === 0) {
                 lossCounter++
                 losses.textContent = "Losses: " + lossCounter;
-                alert("Sorry, you lost.")
+                alert("My thoughts remain a mystery. Better luck next time!")
                 reset();
                 
         }
         else if (userGuess === activeLetter) {
             winCounter++
             wins.textContent = "Wins: " + winCounter;
-            alert("Congratulations, you've won!")
+            alert("Ahh, I see you have a sixth sense. You've guessed my letter!")
             reset();
         }
     // } else{
