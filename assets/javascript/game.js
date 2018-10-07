@@ -6,6 +6,8 @@ var lossCounter = 0;
 var guessCounter = 10;
 //CREATE array of possible guesses
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+//Limit input to alphabet characters
+
 //CREATE var to hold guessed letters
 var guessedLetters = []
 
@@ -17,26 +19,37 @@ var activeLetter = computerChoices[Math.floor(Math.random()*computerChoices.leng
 function checkGuess() {
     var userGuess = event.key.toLowerCase();
     //Create code to push guessed letters to array
-    guessedLetters.push(userGuess)
-
-    if (userGuess !== activeLetter && guessCounter > 0) {
-        guessCounter--
-        numGuessLeft.textContent = "Guesses Left: " + guessCounter;
-        guessedArray.textContent = "Your guesses so far: " + guessedLetters;
-        console.log("Guesses left: " + guessCounter + guessedLetters); 
+    if (guessedLetters.indexOf(userGuess) === -1) guessedLetters.push(userGuess);
+    
+    if (guessedLetters.indexOf(userGuess) === 1) {
+        return false;
     }
 
-    else if (userGuess !== activeLetter && guessCounter === 0) {
-            lossCounter++
-            losses.textContent = "Losses: " + lossCounter;
+    // if (userGuess === alpha) {
+
+        if (userGuess !== activeLetter && guessCounter > 0) {
+            guessCounter--
+            numGuessLeft.textContent = "Guesses Left: " + guessCounter;
+            guessedArray.textContent = "Your guesses so far: " + guessedLetters;
+            console.log("Guesses left: " + guessCounter + guessedLetters); 
+        }
+
+        else if (userGuess !== activeLetter && guessCounter === 0) {
+                lossCounter++
+                losses.textContent = "Losses: " + lossCounter;
+                alert("Sorry, you lost.")
+                reset();
+                
+        }
+        else if (userGuess === activeLetter) {
+            winCounter++
+            wins.textContent = "Wins: " + winCounter;
+            alert("Congratulations, you've won!")
             reset();
-            console.log("Sorry, you lost")
-    }
-    else if (userGuess === activeLetter) {
-        winCounter++
-        wins.textContent = "Wins: " + winCounter;
-        reset();
-    }
+        }
+    // } else{
+    //     alert("Please guess only letters.")
+    // }
 }
 
 document.addEventListener("keyup", checkGuess);
@@ -50,6 +63,7 @@ function reset () {
     numGuessLeft.textContent = "Guesses Left: 10";
     guessedArray.textContent = "Your guesses so far: ";
     guessedLetters.length = 0;
+    gameResult.textContent = ""
     activeLetter = computerChoices[Math.floor(Math.random()*computerChoices.length)];
     console.log(activeLetter);
 }
