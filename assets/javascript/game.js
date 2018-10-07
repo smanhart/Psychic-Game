@@ -15,14 +15,23 @@ var guessedLetters = []
 var activeLetter = computerChoices[Math.floor(Math.random()*computerChoices.length)];
    console.log(activeLetter)
 
+ function checkChar(event) {
+    var pressed = event.keycode;
+    var validLetter = (pressed > 64 && pressed < 91)
+}
+
 
 function checkGuess() {
     var userGuess = event.key.toLowerCase();
     //Create code to push guessed letters to array
-    if (guessedLetters.indexOf(userGuess) === -1) guessedLetters.push(userGuess);
-    
+    guessedLetters.push(userGuess);
 
-    // if (userGuess === alpha) {
+    //I can't figure out how to stop the guess counter from going down like i stopped the duplicate array push, so I took it out for consistancy.
+    // if (guessedLetters.indexOf(userGuess) === -1) guessedLetters.push(userGuess);
+    
+    //I can't figure out how to get the keycode paramiters to appy to the guesses. Ive tried it here and also in the other if statement.
+    // if (userGuess === validLetter) {
+    
 
         if (userGuess !== activeLetter && guessCounter > 0) {
             guessCounter--
@@ -32,10 +41,10 @@ function checkGuess() {
         }
 
         else if (userGuess !== activeLetter && guessCounter === 0) {
-                lossCounter++
-                losses.textContent = "Losses: " + lossCounter;
-                alert("My thoughts remain a mystery. Better luck next time!")
-                reset();
+            lossCounter++
+            losses.textContent = "Losses: " + lossCounter;
+            alert("My thoughts remain a mystery. Better luck next time!")
+            reset();
                 
         }
         else if (userGuess === activeLetter) {
@@ -44,8 +53,6 @@ function checkGuess() {
             alert("Ahh, I see you have a sixth sense. You've guessed my letter!")
             reset();
         }
-    // } else{
-    //     alert("Please guess only letters.")
     // }
 }
 
